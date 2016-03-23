@@ -3,34 +3,31 @@ import socket
 import pickle
 import sys
 #   why were address packets earlier being recceived disoriented? in that address +"\n" +str(port)form
-sock=socket.socket()
-tracker_address=("0.0.0.0",3151)
+port=int(raw_input("enter tracker port:"))
+sock=socket.socket()#esocket.AF_INET,socket.SOCK_STREAM)
+tracker_address=("0.0.0.0",port)
 sock.bind(tracker_address)
 sock.listen(20)
 listp=[]
 k=""
+#p=()
 while True:
 	try:
 		connection,address=sock.accept()
 		message=connection.recv(200)
-		
-		try:
+		address=pickle.loads(message)
+		ch=1
+		for p in listp:
+			if p==address:
+				ch=0
+		if ch:
 			k=pickle.dumps(listp)
-			address=pickle.loads(message)
 			listp.append(address)
 			print listp
 			connection.sendall(k)
-		except:
-			if message=="exit":
-				listp.remove(address)
-		'''for ob in listp:
-			if ob!=address:
-				qsock=socket.socket()
-				qsock.connect(ob)
-				k=pickle.dumps([address])
-				qsock.sendall(k)
-				qsock.close()	
-		'''		
+		else:
+			listp.remove(address)
+				
 	finally:
 		connection.close()
 		
