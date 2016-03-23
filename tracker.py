@@ -11,6 +11,7 @@ sock.listen(20)
 listp=[]
 k=""
 #p=()
+ch=0
 while True:
 	try:
 		connection,address=sock.accept()
@@ -23,11 +24,12 @@ while True:
 		if ch:
 			k=pickle.dumps(listp)
 			listp.append(address)
-			print listp
 			connection.sendall(k)
 		else:
 			listp.remove(address)
 				
 	finally:
-		connection.close()
+		print listp
+		if ch==1:
+			connection.close()
 		

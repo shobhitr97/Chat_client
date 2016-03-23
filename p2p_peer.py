@@ -52,46 +52,41 @@ def grecv(Socket):
 
 
 while True:
-	try:
-		inputr,outputr,errorr=select.select(socklist,socklist,[],120.0)
-		for s in inputr:
-			if s!=nsock:
-				try:
-					message=grecv(s)
-				except:
-					message=None
-				if message:
-					if message!="exit":
-						print message
-					else:
-						socklist.remove(s)
-						s.close()
-			else:
-				print "adding connection"
-				connection,address=nsock.accept()
-				print address
-				socklist.append(connection)
-				#listp.append(address)       as this will not affect the working of code we don't need the list after addition
-
+	inputr,outputr,errorr=select.select(socklist,socklist,[],120.0)
+	for s in inputr:
+		if s!=nsock:
+			try:
+				message=grecv(s)
+			except:
+				message=None
+			if message:
+				if message!="exit":
+					print message
+				else:
+					socklist.remove(s)
+					s.close()
+		else:
+			print "adding connection"
+			connection,address=nsock.accept()
+			print address
+			socklist.append(connection)
+			#listp.append(address)       as this will not affect the working of code we don't need the list after addition
 	
-		try: 	
-			mess=takeinput()
-		except:
-			mess=None
-		if mess:
-			if mess!="exit":
-				mess=name+":"+mess
-			for k in outputr:
-				if k!=nsock:
-					k.sendall(mess)
-			if mess=="exit":
-				sok_t=socket.socket()
-				sok_t.connect(tracker_address)
-				sok_t.sendall(pickle.dumps(my_address))
-				break
+	try: 	
+		mess=takeinput()
 	except:
-		print "one removed or empty"	
-				
+		mess=None
+	if mess:
+		if mess!="exit":
+			mess=name+":"+mess
+		for k in outputr:
+			if k!=nsock:
+				k.sendall(mess)
+		if mess=="exit":
+			sok_t=socket.socket()
+			sok_t.connect(tracker_address)
+			sok_t.sendall(pickle.dumps(myaddress))
+			break
 			#notify the tracker
 				
 
