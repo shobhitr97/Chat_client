@@ -7,7 +7,7 @@ import select
 def takemes():
 	message=raw_input()
 	return message
-server_address=("0.0.0.0",3150)
+server_address=("0.0.0.0",3151)
 c_sock=socket.socket()
 name=raw_input("enter your name:")
 c_sock.connect(server_address)

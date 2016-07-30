@@ -1,11 +1,12 @@
 #!usr/bin/env python 
-import sys,socket,select,pickle,time
+import sys,socket,select,pickle
+import time
 from timeout import timeout
 
 @timeout(1)
 def getin():
 	m=""
-	m=raw_input()#"->")
+	m=raw_input()			#"->")
 	return m
 
 @timeout(1)
@@ -14,8 +15,7 @@ def grecv(socket):
 	message=socket.recv(200)
 	return message
 
-ticks=0.0
-tick=0.0
+ticks=time.time()
 
 name=raw_input("enter your name:")
 
@@ -33,13 +33,13 @@ k=""
 s=()                         #the address of the successor
 s_s=()			     #the address of successor of successor
 #to the predecessor and new peers
-s_sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s_sock=socket.socket()
 s_sock.bind(my_add1)
 s_sock.listen(20)
 socklist=[s_sock]
 
 #to get the address of the successor peer 
-sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+sock=socket.socket()
 sock.connect(the_add)
 sock.sendall(pickle.dumps(("connect",pickle.dumps(my_add1))))
 message=sock.recv(200)
@@ -57,14 +57,13 @@ socklist.append(connection)
 #assign a key
 
 #to the successor
-r_sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+r_sock=socket.socket()
 r_sock.connect(s)
 r_sock.sendall(pickle.dumps(("to_successor","")))
 message=grecv(r_sock)
 s_s=pickle.loads(message)
 print "the succcessor to successor - "
 print s_s
-
 
 while True:
 
@@ -77,7 +76,7 @@ while True:
 		for t in inputr:
 			if t==s_sock:
 				connection,address=t.accept()
-				message=grecv(connection)
+				message=connection.recv(200)
 				connection.sendall(pickle.dumps(s))
 				socklist.append(connection)
 				print "the predecessor -"
@@ -89,10 +88,32 @@ while True:
 						key_i,string1=pickle.loads(message)
 						if key_i != key:
 							print string1
-							r_sock.sendall(message)
-					
-					else:
-						print "yeah"
+							try:
+								r_sock.sendall(message)
+							except:
+									print "peer removed"
+									#r_sock.close()
+									r_sock=socket.socket()
+									print "connecting to - "
+									print s_s
+									r_sock.connect(s_s)
+									#socklist.append(r_sock)
+									s=s_s
+									if s_s!=the_add:
+										r_sock.sendall(str(key-2))
+										message=r_sock.recv(200)
+										s_s=pickle.loads(message)
+										print "removed:"
+										print s_s
+										print "added:"
+										print s
+									else:
+										r_sock.sendall(pickle.dumps(("no","")))
+										message=r_sock.recv(200)
+										s_s=pickle.loads(message)
+
+					#else:
+					#	print "\n received # \n"
 
 				except:
 					message=None
@@ -110,26 +131,39 @@ while True:
 	try:
 		if string1:
 			r_sock.sendall(pickle.dumps((key,string1)))
-		else:
-			tick=time.clock()
-			if tick-ticks>10.0:
-				r_sock.sendall("#")
-				ticks=tick
+		
+		tick=time.time()
+		if tick-ticks> 10:
+			r_sock.sendall("#")
+			ticks=tick
+			#print tick
+			'''print "successor:"
+			print s
+			print "successor to successor"
+			print s_s'''
 			
+			#print "sent #" 		
 	except:
 		print "peer removed"
-		#r_sock.close()
-		r_sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+		#sockist.remove(r_sock)
+		r_sock=socket.socket()
 		print "connecting to - "
 		print s_s
 		r_sock.connect(s_s)
-		socklist.append(r_sock)
+		#socklist.append(r_sock)
 		s=s_s
 		if s_s!=the_add:
 			r_sock.sendall(str(key-2))
-			message=grecv(r_sock)
+			message=r_sock.recv(200)
 			s_s=pickle.loads(message)
-			print "removed:"+s_s+"added:"+s
+			print "removed:"
+			print s_s
+			print "added:"
+			print s
+		else:
+			r_sock.sendall(pickle.dumps(("no","")))
+			message=r_sock.recv(200)
+			s_s=pickle.loads(message)
 		
 
 

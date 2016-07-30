@@ -1,0 +1,3 @@
+Problem:
+If the peer ,immediately next to the listening node,exits abruptly the listening node causes a bad file descriptor error, on the addition of a new peer and hence the network breaks down.
+The exit of any other peer than the above mentioned one ,does not cause any problem.
