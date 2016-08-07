@@ -31,36 +31,37 @@
         <h3>
 <a id="objective-of-the-project" class="anchor" href="#objective-of-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OBJECTIVE OF THE PROJECT</h3>
 
-<p><strong>To develop a back-end code for a chat client which allows the peers to chat on groups with 2 or more participants.All the peers can enter and exit the chat anytime and can share files over a wifi or a lan network.This project taught us a lot of things about network sockets and overall networking concepts.</strong></p>
+<p><strong>To develop a back-end code for a chat client which allows the peers to chat on groups with 2 or more participants.All the peers can enter and exit the chat anytime and can share files over a Wi-Fi or a LAN network.This project taught us a lot of things about network sockets and overall networking concepts.</strong></p>
 
 <h3>
 <a id="our-implementation" class="anchor" href="#our-implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OUR IMPLEMENTATION</h3>
 
-<p><strong>The network comprises of peers that are connected to each other to form a loop.Every member has a key that recognises it .Every message has the key of the sender pinned to it.The message traverses the whole through subsequent passing and this stops when the message reaches the sender .
+<p><strong>The network comprises of peers that are connected to each other to form a loop.Every member has a key that recognizes it .Every message has the key of the sender pinned to it.The message traverses the whole through subsequent passing and this stops when the message reaches the sender .
 There are two kinds of codes.
 One,for the peer that accepts new peers and is run at the beginning of the chat.
 The other one runs for all the other peers that simply request the former one for addition to the chat and simply chat.
 The former one can't exit the chat until everybody else leaves.</strong></p>
 
 <h3>
-<a id="we-worked-on-this-project-throughout-our-second-semester-and-the-following-section-shows-how-we-made-progress-with-time" class="anchor" href="#we-worked-on-this-project-throughout-our-second-semester-and-the-following-section-shows-how-we-made-progress-with-time" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>We worked on this project throughout our second semester and the following section shows how we made progress with time:</h3>
+<a id="we-worked-on-this-project-throughout-our-second-semester-and-the-following-section-shows-how-we-made-progress-with-time" class="anchor" href="#we-worked-on-this-project-throughout-our-second-semester-and-the-following-section-shows-how-we-made-progress-with-time" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>We worked on this project throughout our second semester and the following section shows how we made progress with time:</strong>
+</h3>
 
 <ul>
-<li><h4>
-<a id="during-the-initial-stage-of-our-project-we-were-given-some-reading-material-to-introduce-us-to-python-github-and--network-sockets" class="anchor" href="#during-the-initial-stage-of-our-project-we-were-given-some-reading-material-to-introduce-us-to-python-github-and--network-sockets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>During the initial stage of our project we were given some reading material to introduce us to python ,github and  network sockets.</h4></li>
+<li><h3>
+<a id="during-the-initial-stage-of-our-project-we-were-given-some-reading-material-to-introduce-us-to-python-github-and--network-sockets" class="anchor" href="#during-the-initial-stage-of-our-project-we-were-given-some-reading-material-to-introduce-us-to-python-github-and--network-sockets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>During the initial stage of our project we were given some reading material to introduce us to python ,github and  network sockets.</h3></li>
 <li>
-<h4>
-<a id="after-we-finished-our-reading-we-were-asked-to-make-a-simple-server-client-model-in-which-the-chat-between-two-peers-is-facilitated-by-a-server-who-passes-each-receivesd-message-to--every-other-client" class="anchor" href="#after-we-finished-our-reading-we-were-asked-to-make-a-simple-server-client-model-in-which-the-chat-between-two-peers-is-facilitated-by-a-server-who-passes-each-receivesd-message-to--every-other-client" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>After we finished our reading we were asked to make a simple server-client model in which the chat between two peers is facilitated by a server who passes each receivesd message to  every other client.</h4>
+<h3>
+<a id="after-we-finished-our-reading-we-were-asked-to-make-a-simple-server-client-model-in-which-the-chat-between-two-peers-is-facilitated-by-a-server-who-passes-each-received-message-to--every-other-client" class="anchor" href="#after-we-finished-our-reading-we-were-asked-to-make-a-simple-server-client-model-in-which-the-chat-between-two-peers-is-facilitated-by-a-server-who-passes-each-received-message-to--every-other-client" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>After we finished our reading we were asked to make a simple server-client model in which the chat between two peers is facilitated by a server who passes each received message to  every other client.</h3>
 
-<h4>
-<a id="this-was-later-modified-to-incorporate-more-than-2-peers" class="anchor" href="#this-was-later-modified-to-incorporate-more-than-2-peers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>This was later modified to incorporate more than 2 peers.</h4>
+<h3>
+<a id="this-was-later-modified-to-incorporate-more-than-2-peers" class="anchor" href="#this-was-later-modified-to-incorporate-more-than-2-peers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>This was later modified to incorporate more than 2 peers.</h3>
 </li>
-<li><h4>
-<a id="then-we-switched-from-server-client-to-peer-to-peer-model-in-this-network-each-peer-was-connected-to-every-other-peer-and-there-was-a-tracker-which-kept-track-of-the-connected-peers-and-catered-to-the-needs-of-incoming-peers" class="anchor" href="#then-we-switched-from-server-client-to-peer-to-peer-model-in-this-network-each-peer-was-connected-to-every-other-peer-and-there-was-a-tracker-which-kept-track-of-the-connected-peers-and-catered-to-the-needs-of-incoming-peers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Then we switched from server-client to peer to peer model .In this network each peer was connected to every other peer and there was a tracker which kept track of the connected peers and catered to the needs of incoming peers.</h4></li>
-<li><h4>
-<a id="a-more-enhanced-and-less-complex-version-of-this-model-had-all-the-peers-connected-in-a-circle-to-form-a-network-since-they-were-all-connected-in-a-circleeach-message-traversed-the-whole-circle-by-sequential-passingthis-improved-the-performance-of-the-network" class="anchor" href="#a-more-enhanced-and-less-complex-version-of-this-model-had-all-the-peers-connected-in-a-circle-to-form-a-network-since-they-were-all-connected-in-a-circleeach-message-traversed-the-whole-circle-by-sequential-passingthis-improved-the-performance-of-the-network" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A more enhanced and less complex version of this model had all the peers connected in a circle to form a network .Since they were all connected in a circle,each message traversed the whole circle by sequential passing.This improved the performance of the network.</h4></li>
-<li><h4>
-<a id="furthermorewe-are-trying-to-add-capablity-to-share-files-over-the-network" class="anchor" href="#furthermorewe-are-trying-to-add-capablity-to-share-files-over-the-network" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Furthermore,we are trying to add capablity to share files over the network.</h4></li>
+<li><h3>
+<a id="then-we-switched-from-server-client-to-peer-to-peer-model-in-this-network-each-peer-was-connected-to-every-other-peer-and-there-was-a-tracker-which-kept-track-of-the-connected-peers-and-catered-to-the-needs-of-incoming-peers" class="anchor" href="#then-we-switched-from-server-client-to-peer-to-peer-model-in-this-network-each-peer-was-connected-to-every-other-peer-and-there-was-a-tracker-which-kept-track-of-the-connected-peers-and-catered-to-the-needs-of-incoming-peers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Then we switched from server-client to peer to peer model .In this network each peer was connected to every other peer and there was a tracker which kept track of the connected peers and catered to the needs of incoming peers.</h3></li>
+<li><h3>
+<a id="a-more-enhanced-and-less-complex-version-of-this-model-had-all-the-peers-connected-in-a-circle-to-form-a-network-since-they-were-all-connected-in-a-circleeach-message-traversed-the-whole-circle-by-sequential-passingthis-improved-the-performance-of-the-network" class="anchor" href="#a-more-enhanced-and-less-complex-version-of-this-model-had-all-the-peers-connected-in-a-circle-to-form-a-network-since-they-were-all-connected-in-a-circleeach-message-traversed-the-whole-circle-by-sequential-passingthis-improved-the-performance-of-the-network" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A more enhanced and less complex version of this model had all the peers connected in a circle to form a network .Since they were all connected in a circle,each message traversed the whole circle by sequential passing.This improved the performance of the network.</h3></li>
+<li><h3>
+<a id="furthermorewe-are-trying-to-add-capability-to-share-files-over-the-network" class="anchor" href="#furthermorewe-are-trying-to-add-capability-to-share-files-over-the-network" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Furthermore,we are trying to add capability to share files over the network.</h3></li>
 </ul>
 
 <p>Link to the project repository: <a href="https://github.com/shobhitr97/Chat_client">https://github.com/shobhitr97/Chat_client</a></p>
