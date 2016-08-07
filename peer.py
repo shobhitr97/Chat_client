@@ -13,7 +13,7 @@ def getin():
 def grecv(socket):
 	message=""
 	message=socket.recv(200)
-	return message
+	return message			
 
 ticks=time.time()
 
@@ -74,7 +74,7 @@ while True:
 '''
 	if inputr:
 		for t in inputr:
-			if t==s_sock:
+			if t==s_sock:		
 				connection,address=t.accept()
 				message=connection.recv(200)
 				connection.sendall(pickle.dumps(s))

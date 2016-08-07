@@ -8,23 +8,32 @@ from timeout import timeout
 #So in the starting only I must know the address of the successor of the successor so that i can establish a connection with the next peer in case of failure of immediate successor
 
 
-@timeout(1)
+@timeout(1)          #decorator	
 def getin():
 	m=""
 	m=raw_input()#"->")
 	return m
 
-@timeout(1)
+@timeout(1)	
 def grecv(socket):
 	message=""
 	message=socket.recv(200)
 	return message
+#note:add address of the deleted node
+def notify_tracker(add):
+	new_socket=socket.socket()
+	new_socket.connect(tracker_add)
+	new_socket.sendall(pickle.dumps(add))
+
 
 ticks=time.time()
 name=raw_input("enter your name:")
 
 myport=int(raw_input("enter the listening port:"))
 my_add=("0.0.0.0",myport)
+
+#tracker_port=int(raw_input("enter tracker port:"))
+#tracker_add=("0.0.0.0",tracker_port)
 
 key=1	
 message=""
@@ -41,6 +50,7 @@ sock.bind(my_add)
 sock.listen(20)
 socklist=[sock]
 
+
 connection,add1=sock.accept()
 message=connection.recv(200)
 phrase,string1=pickle.loads(message)
@@ -56,8 +66,38 @@ if phrase=="connect":
 	key=key+1
 	#socklist.append(n_sock)
 
+'''
+#to add new peer to the tracker's list
+n_sock=socket.socket()
+n_sock.connect(tracker_add)
+n_sock.sendall(pickle.dumps(my_add))
+message=n_sock.recv(200)
+p_add=pickle.loads(message)
+n_sock.close()
 
+#to get the address of the successor peer 
+n_sock=socket.socket()
+n_sock.connect(p_add)
+n_sock.sendall(pickle.dumps(("connect",pickle.dumps(my_add))))
+message=n_sock.recv(200)
+s=pickle.loads(message)
+print "the successor:"
+print s_add
+n_sock.close()
 
+#to the predecessor
+connection,address=sock.accept()
+key=int(connection.recv(200))
+socklist.append(connection)
+'''
+
+#assign a key
+
+#to the successor
+n_sock=socket.socket()
+n_sock.connect(s_add)
+n_sock.sendall(str(key))
+key=key+1
 
 while True:
 	#try:
@@ -97,6 +137,7 @@ while True:
 							except:
 								if s_s_add!=my_add:
 									print "peer removed"
+									#notify_tracker(s_add)
 									#n_sock.close()
 									n_sock=socket.socket()
 									n_sock.connect(s_s_add)
@@ -109,6 +150,7 @@ while True:
 									print s_s_add
 									print "added:"
 									print s_add
+								
 							#print string1
 					#else:
 					#	print "\n received # \n"
@@ -138,7 +180,7 @@ while True:
 		if tick-ticks > 10:
 			n_sock.sendall("#")
 			ticks=tick
-			#print tick
+			#	print tick
 			'''print "successor:"
 			print s_add
 			print "successor to successor"
@@ -163,6 +205,7 @@ while True:
 			s_s_add=pickle.loads(message)
 			print "successor to succcessor"
 			print s_s_add
+		#notify_tracker()
 
 
 
